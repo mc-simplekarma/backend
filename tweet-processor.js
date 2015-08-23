@@ -38,10 +38,26 @@ module.exports = function(config, mongoose) {
           });
 
           newUser.save(function(errSave, userCreated) {
+            var
+              newFunds;
+
             if (errSave || !userCreated) {
               callback(errSave);
             } else {
-              callback(null, tweet);
+              newFunds = new models.Funds({
+                fundsId: userCreated.userId,
+                userId: userCreated.userId,
+                amount: '5.00',
+                timestamp: new Date()
+              });
+
+              newFunds.save(function(errSaveFunds, fundsCreated) {
+                if (errSaveFunds) {
+                  callback(errSaveFunds);
+                } else {
+                  callback(null, tweet);
+                }
+              });
             }
           });
         } else {

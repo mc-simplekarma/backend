@@ -2,6 +2,8 @@
   "name": "sk-twitter",
   "dependencies": {
     "async": "^1.4.2",
+    "decimal": "0.0.2",
+    "lodash": "^3.10.1",
     "mongoose": "^4.1.3",
     "twit": "^2.1.0"
   }

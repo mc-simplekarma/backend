@@ -41,6 +41,14 @@ module.exports = function(mongoose) {
       contentId: {type: String, index: true},
       text: String,
       timestamp: Date
+    }),
+
+    RaisedSchema: mongoose.Schema({
+      userId: {type: String, required: true, index: true},
+      donorId: {type: String, required: true, index: true},
+      contentId: {type: String, required: true, index: true},
+      amount: String,
+      timestamp: Date
     })
   };
 
@@ -48,6 +56,7 @@ module.exports = function(mongoose) {
     User: mongoose.model('TwitterUser', schemas.UserSchema),
     CauseContent: mongoose.model('CauseContent', schemas.CauseContentSchema),
     Funds: mongoose.model('Funds', schemas.FundsSchema),
-    Vote: mongoose.model('Vote', schemas.VoteSchema)
+    Vote: mongoose.model('Vote', schemas.VoteSchema),
+    Raised: mongoose.model('Raised', schemas.RaisedSchema)
   };
 };

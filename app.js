@@ -63,8 +63,8 @@ twitterStreamProccesor = function(config, mongoose, callback) {
     stream;
 
   T = new Twit({
-    consumer_key: 'fB9nMTsiOlb52ikGgwplOZcvs',
-    consumer_secret: 'x4aGLxzsL3uxYBqEldUTuCREPYbl6anv31wY0L6vKcNv4IUH8G',
+    consumer_key: '4LZdK14xtKW4pDGiWgknMbXxd',
+    consumer_secret: '9O3e2u0Acb2xy0PqgmFf0wqZmJ2Wr5sW7CCFGjurfUNjQRdArZ',
     //app_only_auth:        true
     access_token: '1958975024-BxI0corqubiB2MLE9nX6NjeYqJjQpTCAY4AqZnt',
     access_token_secret: 'GlwgqJtUUnaBnC7mC3pgFDQjtNdCjIVbPvLdLEnmaWinZ'

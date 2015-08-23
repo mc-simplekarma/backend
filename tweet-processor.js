@@ -9,7 +9,9 @@ module.exports = function(config, mongoose) {
     tweetLogger,
     checkForOriginalContent,
     checkForReTweet,
-    checkForQuote;
+    checkForQuote,
+
+    addVote;
 
   models = require('./models')(mongoose);
 
@@ -84,6 +86,28 @@ module.exports = function(config, mongoose) {
     }
   };
 
+  addVote = function(tweet, contentId, callback) {
+    var
+      newVote;
+
+    newVote = new models.Vote({
+      voteId: tweet.id_str,
+      userId: tweet.user.id_str,
+      contentId: contentId,
+      text: tweet.text,
+      timestamp: new Date(parseInt(tweet.timestamp_ms))
+    });
+
+    newVote.save(function(errSave, voteCreated) {
+      if (errSave || !voteCreated) {
+        callback(errSave);
+      } else {
+        console.log('Voted: ' + tweet.text);
+        callback(null, tweet);
+      }
+    });
+  };
+
   checkForReTweet = function(tweet, callback) {
     if (tweet.retweeted_status) {
       async.waterfall(
@@ -98,8 +122,7 @@ module.exports = function(config, mongoose) {
           if (err) {
             callback(err);
           } else {
-
-            callback(null, tweet);
+            addVote(tweet, tweet.retweeted_status.id_str, callback);
           }
         }
       );
@@ -123,9 +146,7 @@ module.exports = function(config, mongoose) {
           if (err) {
             callback(err);
           } else {
-            // TODO Add Vote
-
-            callback(null, tweet);
+            addVote(tweet, tweet.quoted_status.id_str, callback);
           }
         }
       );

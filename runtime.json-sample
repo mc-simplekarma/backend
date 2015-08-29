@@ -1,0 +1,16 @@
+{
+  "mongo": {
+    "auth": {
+      "database": "simplekarma",
+      "server": "ds033123.mongolab.com:33123",
+      "username": "XXX",
+      "password": "YYY"
+    },
+    "server": {
+      "socketOptions": {
+        "keepAlive": 1
+      },
+      "poolSize": 25
+    }
+  }
+}
